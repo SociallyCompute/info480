@@ -1,7 +1,11 @@
 ## Always a good practice to release old data from memory
 rm(list=ls(all=TRUE))
 
-
+### stringr is a string processing package for R
+if(is.installed("stringr")==FALSE) 
+  install.packages("stringr",repos="http://cran.us.r-project.org")
+else
+  print("library installed.  yay!")
 # Load the libraries you need
 library(stringr)
 
@@ -17,18 +21,6 @@ inputfile <- "londonsample.csv"
 
 df <- read.csv(file=inputfile)
 
-### R often consumers files of multiple different types.  The most common are .csv files and 
-### tab delimited files.  CSV files are read with read.csv(); Tab delimited files are read
-### with read.table()
-
-#inputfile2 <- "../ParticipantData/2537.csv"
-#df <- read.table(file=inputfile2, header=TRUE)
-
-#inputfile3 <- "../ParticipantData/2537.csv"
-#df <- read.csv(file=inputfile3, header=TRUE)
-
-
-####select only the relevant columns
 
 ###examine the dataframe that is read in
 head(df)
@@ -82,7 +74,8 @@ df$modifiedtweet=str_extract(df$text,"mt (@[[:graph:]_]*)")
 ####This identifies the presence of a link and assigns that value by row to linkpresence
 df$linkpresence=str_detect(df$text, '(http://[[:graph:]\\s]*)')
 
-####This identifies the presence of a fauxto (more later) and assigns that value by row to ####fauxtopresence
+#### This identifies the presence of a fauxto (more later) and assigns that value by row to ####fauxtopresence
+
 df$fauxtopresence=str_detect(df$text, "^(.@[[:graph:]_]*)")
 
 ####This identifies the presence of a hashtag and assigns that value by row to ####hashpresence
@@ -104,19 +97,7 @@ filename=paste(inputfile, "MARKEDUP.csv")
 ####write file to a csv
 write.csv(df, file=filename)
 
-####Up until here this takes 1.54 minutes on a medium instance for openingceremony
-#### 43 seconds for closing ceremony
-#####1.6 minutes   for londonweek2
 
-###########################################
-###########################################
-###########################################
-###########################################
-######part 2 if time warrants########
-###########################################
-###########################################
-###########################################
-###########################################
 #####make a table of the str_detect from the previous
 linkpresence=table(df$linkpresence)
 ####sum the number of true
@@ -137,45 +118,31 @@ hashpresence=table(df$hashpresence)
 hashtruecount <- sum(df$hashpresence == 'TRUE')
 hashfalsecount <- sum(df$hashpresence == 'FALSE')
 hashpresencepercentage <- (hashtruecount/(hashtruecount+hashfalsecount))
-#write.csv(hashpresence, file="hashpresence.csv")
+write.csv(hashpresence, file="hashpresence.csv")
 
 mentionpresence=table(df$mentionpresence)
 mentiontruecount <- sum(df$mentionpresence == 'TRUE')
 mentionfalsecount <- sum(df$mentionpresence == 'FALSE')
 mentionpresencepercentage <- (mentiontruecount/(mentiontruecount+mentionfalsecount))
-#write.csv(mentionpresence, file="mentionpresence.csv")
+write.csv(mentionpresence, file="mentionpresence.csv")
+
 replytopresence=table(df$replytopresence)
 replytotruecount <- sum(df$replytopresence == 'TRUE')
 replytofalsecount <- sum(df$replytopresence == 'FALSE')
 replytopresencepercentage <- (replytotruecount/(replytotruecount+replytofalsecount))
-#write.csv(replytopresence, file="replytopresence.csv")
+write.csv(replytopresence, file="replytopresence.csv")
 
 rtpresence=table(df$rtpresence)
 rttruecount <- sum(df$rtpresence == 'TRUE')
 rtfalsecount <- sum(df$rtpresence == 'FALSE')
 rtpresencepercentage <- (rttruecount/(rttruecount+rtfalsecount))
-#write.csv(rtpresence, file="rtpresence.csv")
+write.csv(rtpresence, file="rtpresence.csv")
 
 ####create a table of the syntactical feature distribution we just examined
 syntacticfeatureoverview <- table(inputfile, numberoftweets, linkpresencepercentage, hashpresencepercentage, mentionpresencepercentage, replytopresencepercentage, rtpresencepercentage)
 
 filename=paste("syntacticfeatureoverview", inputfile)
 write.csv(syntacticfeatureoverview, file = filename, row.names=TRUE)
-
-###this previous section takes about 30 seconds on a medium instance for openingceremony
-###5 seconds for closing ceremony
-###10 seconds for londonweek2
-###########################################
-###########################################
-###########################################
-###########################################
-###########################################
-######part 3 if time warrants#####
-###########################################
-###########################################
-###########################################
-###########################################
-###########################################
 
 ###trim the @ sign from the columms where we pulled them out for easy analysis
 trimat <- function (x) sub('@','',x)
@@ -205,16 +172,9 @@ df$via<-trimVIA(df$via)
 trimMT <- function (x) sub('MT ','',x)
 df$modifiedtweet<-trimMT(df$modifiedtweet)
 
-####this previous section takes about 20 seconds on a medium for opening ceremony
-###7seconds for closing ceremony
-###12 seconds for londonweek2
-
 ###create a table of people that were retweeted
 retweettable<-table(df$retweet)
 ####identify those that have been retweeted more than 500 times
 highretweet<-subset(retweettable, retweettable>500)
 
-###the previous section takes about 5 second for openingceremony
-###3 seconds for closing ceremony
-###5 seconds for londonweek2
-
+write.csv(highretweet, file="highretweet.csv")
