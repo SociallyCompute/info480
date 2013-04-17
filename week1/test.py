@@ -1,5 +1,3 @@
-%load_ext rmagic
-
 import argparse, collections, configparser, json, math, mysql.connector as sql, requests, sys, time
 from datetime import datetime
 from mysql.connector import errorcode
@@ -50,5 +48,3 @@ try :
         
     for (institution_id, institution_name) in institutions :
         print(institution_id, institution_name)
-        
-
