@@ -11,10 +11,10 @@ presidentData = read_csv("http://ds101.seangoggins.net/presidents.csv",
 
 
 ### Line Graph Example
-# plt.plot(presidentData[2])
-
-# plt.show()
-
-plt.hist(presidentData[2], bins=200)
+plt.plot(presidentData[2])
 
 plt.show()
+
+#plt.hist(presidentData[2], bins=200)
+
+#plt.show()
