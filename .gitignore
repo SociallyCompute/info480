@@ -1,4 +1,13 @@
 #################
+## RStudio
+#################
+
+.Rproj.user
+.RData
+*.Rapp.history
+*.Rhistory
+
+#################
 ## Eclipse
 #################
 
@@ -162,3 +171,5 @@ pip-log.txt
 # Mac crap
 .DS_Store
 .idea
+
+
