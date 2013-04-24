@@ -28,11 +28,7 @@ library(zoo)
 ####input file
 #inputfile <- "Debate8.csv"
 
-<<<<<<< HEAD
 inputfile <- "j_tsar.csv"
-=======
-inputfile <- "allhungertweets.csv"
->>>>>>> test
 
 df <- read.csv(file=inputfile)
 #####convert UTF-8 just to be safe, if the script is hanging up, it might be because of this
