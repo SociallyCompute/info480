@@ -7,7 +7,7 @@ par(cex=1)
 plot(Year, EMD, col=ifelse(D_EMD, "black", "red"),ylab = "EMD mg/L", pch=ifelse(D_EMD, 19, 17), cex = 0.7)
 
 # Apply loess smoothing using the default span value of 0.8.  You can change the curve by changing the span value.
-y.loess <- loess(y ~ x, span=0.8, data.frame(x=Year, y=EMD))
+y.loess <- loess(y ~ x, span=0.1, data.frame(x=Year, y=EMD))
 
 # Compute loess smoothed values for all points along the curve
 y.predict <- predict(y.loess, data.frame(x=Year))

@@ -12,7 +12,7 @@ def loess( x, h, xp, yp ):
 #d = read_csv("http://ds101.seangoggins.net/presidents.csv", 
 #    header=None)
 
-d = loadtxt( "draftlottery.txt" )
+d = loadtxt("draftlottery.txt")
 s1, s2 = [], []
 for k in d[:,0]:
     s1.append( loess( k, 5, d[:,0], d[:,1] ) )
