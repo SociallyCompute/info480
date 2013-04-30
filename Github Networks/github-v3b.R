@@ -35,7 +35,7 @@ nodeArray <- c()
 # Read the Data in
 ####################################################################
 
-gitLists <- system("ls project*edgelist.csv", intern=T)
+gitLists <- system("dir project*edgelist.csv", intern=T)
 
 for (i in 1:length(gitLists))
 {
