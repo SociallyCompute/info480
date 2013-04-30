@@ -28,6 +28,19 @@ plot( smooth, 'b' )
 # 4) Save the figure to file
 savefig( filename + "_smooth.png" )
 # 5) Clear the figure
+
+
+###### filename_smooth.png will be generated
+###### in your working directory
+
+
+############## below here does not work; 
+## The data described in the book is not available
+### So I hacked another data set together ..
+### Works for the first graph; not the second. :)
+############## below here does not work; 
+
+
 clf()
 # Calculate the autocorrelation function:
 # 1) Subtract the mean
@@ -45,4 +58,3 @@ figure( 2, figsize=( 7, 5 ) )
 plot( corr )
 savefig( filename + "_corr.png" )
 clf()
-
