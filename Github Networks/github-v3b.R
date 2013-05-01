@@ -35,7 +35,11 @@ nodeArray <- c()
 # Read the Data in
 ####################################################################
 
+<<<<<<< HEAD
 gitLists <- system("dir project*edgelist.csv", intern=T)
+=======
+gitLists <- system("ls project*tsar.csv", intern=T)
+>>>>>>> jstar network
 
 for (i in 1:length(gitLists))
 {
