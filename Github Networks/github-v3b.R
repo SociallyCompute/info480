@@ -35,7 +35,7 @@ nodeArray <- c()
 # Read the Data in
 ####################################################################
 
-gitLists <- system("dir project*edgelist.csv", intern=T)
+gitLists <- system("ls edgelist.csv", intern=T)
 
 for (i in 1:length(gitLists))
 {
@@ -76,7 +76,7 @@ for (i in 1:length(gitLists))
   png(viz4)
 	plot(ideg, odeg, type="n", xlab="incoming", ylab="outgoing", main=centered)
 	abline(0,1, lty=3)
-	text(jitter(ideg), jitter(odeg), network.vertex.names(disAll), cex=2.0, col=1)
+	text(jitter(ideg), jitter(odeg), network.vertex.names(disAll), cex=.8, col=1)
   dev.off()
 }
 
