@@ -12,7 +12,7 @@ library(igraph)
 library(RODBC)
 library(RMySQL)
 
-con<-dbConnect(MySQL(), user="xxxxx", password="xxxxx", 
+con<-dbConnect(MySQL(), user="student", password="spock450", 
               dbname="getmathy", host="sociotechnical.ischool.drexel.edu")
         
 el <- dbGetQuery(con, "
