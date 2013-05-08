@@ -1,0 +1,6 @@
+require(zoo)
+data = data.frame(date = as.Date(c('2007-11-05', '2007-12-08', '2008-03-10', '2008-03-11')), value = c(134, 234, 322, 123))
+data = zoo(data$value, data$date)
+days = seq(start(data), end(data), "day")
+data2 = na.locf(merge(data, zoo(,days)))
+plot(data2)
