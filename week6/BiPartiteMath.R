@@ -38,7 +38,7 @@ igraph.options("print.edge.attributes", TRUE)
 # remove weights that are low
 # After some experimentation, it appears that removing edge weights of 3 or lower
 # produces the most parsimonious graph and subgraph
-el <- el[el$weight>180,]
+el <- el[el$weight>50,]
 #Get the complete list of vertices from the database
 #vert <- read.table("vertices.txt", header=TRUE)
 #Get the list of vertices that matter after filtering down based on edge weights above

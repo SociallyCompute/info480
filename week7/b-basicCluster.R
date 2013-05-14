@@ -1,0 +1,7 @@
+dataset <-read.csv("europe.csv")
+modelname<-hclust(dist(dataset))
+plot(modelname, labels=dataset$variable)
+plot(modelname)
+rect.hclust(modelname,9)
+plot(modelname)
+rect.hclust(modelname, k=3)
