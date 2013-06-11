@@ -28,7 +28,7 @@ library(zoo)
 ####input file
 #inputfile <- "Debate8.csv"
 
-inputfile <- "j_tsar.csv"
+inputfile <- "Hunger Games All.txt"
 
 df <- read.csv(file=inputfile)
 #####convert UTF-8 just to be safe, if the script is hanging up, it might be because of this
