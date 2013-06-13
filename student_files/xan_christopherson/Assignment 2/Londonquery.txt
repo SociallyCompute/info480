@@ -1,0 +1,11 @@
+WITH cleaner AS(
+SELECT [created_at]
+      ,[text]
+      ,[from_user]
+      ,CASE WHEN [text] LIKE 'RT @%' THEN 1 ELSE 0 END AS Retweet
+      ,CASE WHEN [text] LIKE 'RT @%' THEN SUBSTRING(text,CHARINDEX(' ',text)+1,LEN(text)) ELSE TEXT END AS clean
+  FROM [finance].[dbo].[londonsample])
+  
+  SELECT *
+		,CASE WHEN [clean] LIKE '@%' THEN SUBSTRING(clean,CHARINDEX('@',clean),CHARINDEX(' ', clean)-2) ELSE NULL END AS At
+		FROM cleaner
