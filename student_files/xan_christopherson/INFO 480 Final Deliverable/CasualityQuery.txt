@@ -1,0 +1,17 @@
+After importing the raw casualty data and the two character country codes, this query yields the desired dataset, Minus the occupation code
+
+SELECT [SERVICE]
+      ,[DEATH DATE]
+      ,[AGE]
+      ,[OCCUPATION CODE]
+      ,[CASUALTY CITY]
+      ,[CASUALTY STATE]
+      ,CASE WHEN tl.[CASUALTY COUNTRY] = cc.AD THEN cc.Andorra 
+			WHEN  tl.[CASUALTY COUNTRY] = 'IZ' THEN 'Iraq' ELSE 
+					tl.[CASUALTY COUNTRY] END AS CasualtyCounty
+      ,[CASUALTY CATEGORY]
+      ,[ID]
+  FROM [finance].[Ops].[testlocations] tl
+  
+  LEFT JOIN finance.ops.countrycodes cc
+  ON tl.[CASUALTY COUNTRY] = cc.AD
